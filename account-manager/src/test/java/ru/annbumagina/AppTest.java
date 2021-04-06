@@ -90,8 +90,10 @@ public class AppTest {
         mvc.perform(get("/recharge?id=" + id + "&amount=100"));
         mvc.perform(get("/buy-shares?id=" + id + "&company=finn&cnt=10"));
         mvc.perform(get("/buy-shares?id=" + id + "&company=jake&cnt=10"));
-        mvc.perform(get("/sell-shares?id=" + id + "&company=finn&cnt=5"));
-        mvc.perform(get("/sell-shares?id=" + id + "&company=jake&cnt=5"));
+        mvc.perform(get("/sell-shares?id=" + id + "&company=finn&cnt=5"))
+            .andExpect(status().isOk());
+        mvc.perform(get("/sell-shares?id=" + id + "&company=jake&cnt=5"))
+            .andExpect(status().isOk());
 
         mvc.perform(get("/get-shares?id=" + id))
                 .andExpect(status().isOk())

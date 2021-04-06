@@ -63,7 +63,7 @@ public class UserController {
         String request = String.format(URL + "/get-price?name=%s", company);
         ResponseEntity<Double> response1 = restTemplate.getForEntity(request, Double.class);
         double price = response1.getBody();
-        if (userDao.sellShares(id, company, cnt, price)) {
+        if (!userDao.sellShares(id, company, cnt, price)) {
             return ResponseEntity.badRequest().build();
         }
 
